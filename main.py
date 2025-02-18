@@ -24,11 +24,12 @@ def load_recipes(filename, ingredients):
         })
     return recipes
 
-def filter_recipes(recipes, disliked_ingredients, time_limit=None):
+def filter_recipes(recipes, disliked_ingredients, time_limit=None, cost_limit=None):
     valid_recipes = [
         recipe for recipe in recipes
         if not disliked_ingredients.intersection(recipe["ingredients"])
         and (time_limit is None or recipe["time"] <= time_limit)
+         and (cost_limit is None or recipe["cost"] <= cost_limit)
     ]
     return valid_recipes
 
@@ -56,7 +57,10 @@ def log_dinner_choice(filename, recipe_name):
 disliked_ingredients = load_disliked_ingredients("recipes_data.xlsx")
 ingredients = load_ingredients("recipes_data.xlsx")
 recipes = load_recipes("recipes_data.xlsx", ingredients)
-time_available = 20  # Adjust this based on when they get home
+
+time_available = 20  # Adjust this based on when we get home
+cost_limit = 10  # Adjust this based on how much we want to spend
+
 chosen_recipe = suggest_dinner(recipes, disliked_ingredients, time_available)
 print("Suggested dinner:", chosen_recipe)
 log_dinner_choice("recipes_data.xlsx", chosen_recipe)
