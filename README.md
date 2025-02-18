@@ -1,4 +1,4 @@
-🍽️ Dinner Decision Helper
+# 🍽️ Dinner Decision Helper
 Tired of the eternal struggle of deciding what to eat for dinner after climbing at 11pm? 
 Marco and Ylenia sure are! 
 
